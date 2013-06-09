@@ -132,7 +132,7 @@ public class Main {
             rule.append(params[i]+" ");        // concatenate token
         }
 
-        fuzzyEngine.getFuzzyRuleCollection().add(new FuzzyRule(rule.substring(0,rule.length()-1)));
+        fuzzyEngine.getFuzzyRuleCollection().add(new FuzzyRule(rule.substring(0,rule.length()-2)));
         System.out.println("Rule Added");
     }
 
@@ -227,7 +227,7 @@ public class Main {
         }
         try{
             for (int i=1;i<params.length;i++){
-                String [] token = params[1].split("=");
+                String [] token = params[i].split("=");
                 if(token.length!=2){
                     System.out.println("--Invalid params--\n");
                     return;
