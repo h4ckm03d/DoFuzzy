@@ -269,7 +269,7 @@ public class Main {
         }
     }
 
-    public void sample(){
+    public void sample1(){
         LinguisticVariable water = new LinguisticVariable("water");
         water.getMembershipFunctionCollection().add(
                 new MembershipFunction("cold", 0, 0, 20, 40));
@@ -295,6 +295,81 @@ public class Main {
                 new FuzzyRule("if (water is hot) then power is low"));
 
         water.setInputValue(60);
+    }
+    public void sample(){
+        LinguisticVariable tinggibadan = new LinguisticVariable("tinggibadan");
+        tinggibadan.getMembershipFunctionCollection().add(
+                new MembershipFunction("rendah", 145, 150, 160, 165));
+        tinggibadan.getMembershipFunctionCollection().add(
+                new MembershipFunction("normal", 155, 160, 170, 175));
+        tinggibadan.getMembershipFunctionCollection().add(
+                new MembershipFunction("tinggi", 165, 170, 185, 190));
+
+        LinguisticVariable beratbadan = new LinguisticVariable("beratbadan");
+        beratbadan.getMembershipFunctionCollection().add(
+                new MembershipFunction("ringan", 35, 45, 50, 55));
+        beratbadan.getMembershipFunctionCollection().add(
+                new MembershipFunction("normal", 45, 50, 60, 65));
+        beratbadan.getMembershipFunctionCollection().add(
+                new MembershipFunction("berat", 60, 65, 75, 80));
+
+        LinguisticVariable statusgizi = new LinguisticVariable("statusgizi");
+        statusgizi.getMembershipFunctionCollection().add(
+                new MembershipFunction("ktb", 13, 14, 16, 17));
+        statusgizi.getMembershipFunctionCollection().add(
+                new MembershipFunction("ktr", 16, 17, 17.5, 18.5));
+        statusgizi.getMembershipFunctionCollection().add(
+                new MembershipFunction("normal", 17.5, 19, 24, 25));
+        statusgizi.getMembershipFunctionCollection().add(
+                new MembershipFunction("gtr", 24, 25, 26, 27));
+        statusgizi.getMembershipFunctionCollection().add(
+                new MembershipFunction("gtb", 26, 28, 30, 33));
+
+        fuzzyEngine.getLinguisticVariableCollection().add(tinggibadan);
+        fuzzyEngine.getLinguisticVariableCollection().add(beratbadan);
+        fuzzyEngine.getLinguisticVariableCollection().add(statusgizi);
+        fuzzyEngine.setConsequent("statusgizi");
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is rendah) and (beratbadan is ringan) then statusgizi is normal"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is rendah) and (beratbadan is normal) then statusgizi is gtr"));
+
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is rendah) and (beratbadan is berat) then statusgizi is gtb"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is normal) and (beratbadan is ringan) then statusgizi is ktr"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is normal) and (beratbadan is normal) then statusgizi is normal"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is normal) and (beratbadan is berat) then statusgizi is gtr"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is tinggi) and (beratbadan is ringan) then statusgizi is ktb"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is tinggi) and (beratbadan is normal) then statusgizi is ktr"));
+        fuzzyEngine
+                .getFuzzyRuleCollection()
+                .add(new FuzzyRule
+                        ("if (tinggibadan is tinggi) and (beratbadan is berat) then statusgizi is normal"));
+
+
+        tinggibadan.setInputValue(160);
+        beratbadan.setInputValue(42);
     }
 
     public void setOutput(String [] params){
