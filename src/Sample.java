@@ -7,7 +7,7 @@
  */
 import com.upi.fuzzy.*;
 
-public class testFuzzy {
+public class Sample {
     public static void main(String[] args) {
         LinguisticVariable water = new LinguisticVariable("Water");
         water.getMembershipFunctionCollection().add(
@@ -30,16 +30,16 @@ public class testFuzzy {
         fuzzyEngine
                 .getFuzzyRuleCollection()
                 .add(new FuzzyRule(
-                        "IF (Water IS Cold) OR (Water IS Tepid) THEN Power IS High"));
+                        "if (Water is Cold) or (Water is Tepid) then Power is High"));
         fuzzyEngine.getFuzzyRuleCollection().add(
-                new FuzzyRule("IF (Water IS Hot) THEN Power IS Low"));
+                new FuzzyRule("if (Water is Hot) then Power is Low"));
 
         water.setInputValue(60);
 
         try {
             System.out.println(fuzzyEngine.Defuzzify());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("error "+e.getMessage());
         }
     }
 }
