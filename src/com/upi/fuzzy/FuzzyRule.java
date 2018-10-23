@@ -77,7 +77,7 @@ public class FuzzyRule {
      * @return The conditions of the rule.
      */
 	public String Conditions() {
-		return this.text.toLowerCase().substring(this.text.indexOf("if ") + 3,
+		return this.text.substring(this.text.indexOf("if ") + 3,
 				this.text.indexOf(" then"));
 	}
 }
